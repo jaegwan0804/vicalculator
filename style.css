@@ -1,44 +1,58 @@
+/* 기본 레이아웃 */
 body{
   font-family: Arial, sans-serif;
-  max-width: 640px;
+  max-width: 900px;               /* 넓이 확대 */
   margin: 40px auto;
 }
 h1{ text-align:center; margin-bottom:20px; }
 
-.inline{ display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.inline{ display:flex; align-items:center; gap:8px; margin-bottom:18px; }
 input{ flex:1; padding:6px; }
 
+/* 24칸(6×4) 그리드 */
 .grid{
   display:grid;
-  grid-template-columns: repeat(6, 64px);  /* 6칸 × 4줄 */
-  gap:4px; margin:20px 0;
+  grid-template-columns: repeat(6, 128px);  /* 6칸 */
+  gap:6px;
+  margin:20px 0;
 }
-.wrap{
-  display:flex; flex-direction:column; align-items:center;
-}
+.wrap{ display:flex; flex-direction:column; align-items:center; }
+
+/* 셀 스타일 */
 .cell{
-  width:64px; height:64px; cursor:pointer;
-  background:#e0e0e0; border-radius:6px;
+  width:128px; height:128px; cursor:pointer;
+  background:#e0e0e0; border-radius:8px;
 }
-.cell.standby   { background:#ffd54d; } /* 노랑 */
-.cell.discharge { background:#4fc3f7; } /* 파랑 */
-.cell.charge    { background:#81c784; } /* 초록 */
+.cell.standby   { background:#ffd54d; } /* 대기(노랑) */
+.cell.discharge { background:#4fc3f7; } /* 방출(파랑) */
+.cell.charge    { background:#81c784; } /* 충전(초록) */
 
-.time-label{ font-size:0.75rem; margin-top:4px; }
-
-.legend{
-  margin-bottom:12px; font-size:0.9rem;
+/* 시간대 라벨 */
+.time-label{
+  font-size:0.8rem;
+  margin-top:6px; text-align:center; line-height:1.1;
 }
-.legend .cell{ width:18px; height:18px; vertical-align:middle; margin-right:4px; }
 
-#summary{ margin:16px 0; font-weight:600; }
+/* 범례 */
+.legend{ margin-bottom:14px; font-size:1rem; }
+.legend-box{
+  display:inline-block;
+  width:32px; height:18px; border-radius:3px; margin-right:6px;
+}
+.legend-box.standby   { background:#ffd54d; }
+.legend-box.discharge { background:#4fc3f7; }
+.legend-box.charge    { background:#81c784; }
+
+/* 요약·버튼·결과 */
+#summary{ margin:18px 0; font-weight:600; }
 #calcBtn{
   padding:10px; width:100%;
-  background:#0066ff; color:#fff; border:none; border-radius:4px; cursor:pointer;
+  background:#0066ff; color:#fff;
+  border:none; border-radius:4px; cursor:pointer;
   font-size:1rem;
 }
 #result{
-  margin-top:18px;
+  margin-top:22px;
   font-size:1.1rem;
   font-weight:bold;
   text-align:center;
