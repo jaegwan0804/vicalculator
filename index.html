@@ -8,20 +8,19 @@
 <body>
   <h1>ESS Planner 일간 VIC 계산기</h1>
 
-  <div class="row">
-    <label class="inline">ESS 정격출력 (MW)
-      <input id="pRated" type="number" step="0.01" value="0.75" required>
-    </label>
-  </div>
+  <!-- 정격출력 입력 -->
+  <label class="inline">ESS 정격출력 (MW)
+    <input id="pRated" type="number" step="0.01" value="0.75" required>
+  </label>
 
-  <!-- 24-칸 시간표 -->
+  <!-- 24시간 스케줄 그리드 -->
   <div id="grid" class="grid"></div>
 
-  <!-- 색상 범례 -->
+  <!-- 범례 -->
   <div class="legend">
-    <span class="cell standby"></span> 대기&nbsp;&nbsp;
-    <span class="cell discharge"></span> 방출&nbsp;&nbsp;
-    <span class="cell charge"></span> 충전
+    <span class="legend-box standby"></span> 대기&nbsp;&nbsp;
+    <span class="legend-box discharge"></span> 방출&nbsp;&nbsp;
+    <span class="legend-box charge"></span> 충전
   </div>
 
   <!-- 요약 -->
@@ -35,3 +34,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
