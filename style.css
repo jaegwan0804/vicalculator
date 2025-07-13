@@ -1,59 +1,91 @@
-/* 기본 레이아웃 */
-body{
-  font-family: Arial, sans-serif;
-  max-width: 900px;               /* 넓이 확대 */
-  margin: 40px auto;
+/* 1. 글꼴 · 바탕 */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+:root{
+  --blue:#0066ff;
+  --yellow:#ffd54d;
+  --green:#81c784;
+  --sky:#4fc3f7;
+  --gray:#f0f2f5;
+  --shadow:0 4px 14px rgba(0,0,0,.08);
 }
-h1{ text-align:center; margin-bottom:20px; }
 
-.inline{ display:flex; align-items:center; gap:8px; margin-bottom:18px; }
-input{ flex:1; padding:6px; }
+html,body{
+  height:100%; margin:0;
+  font-family:"Montserrat",Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#e3f2fd 0%,#e8f5e9 80%);
+  color:#222; line-height:1.4;
+}
 
-/* 24칸(6×4) 그리드 */
+/* 2. 카드 형태 컨테이너 */
+body>h1{ text-align:center; padding-top:30px; margin:0 0 20px; }
+
+.container{
+  max-width:960px;
+  margin:0 auto 60px;
+  background:white;
+  border-radius:16px;
+  padding:32px 40px 48px;
+  box-shadow:var(--shadow);
+}
+
+/* 3. 입력박스 */
+.inline{
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:24px;
+}
+input{
+  flex:1; padding:10px 12px;
+  font-size:1rem; border:1px solid #ccc;
+  border-radius:6px; background:#fafafa;
+}
+input:focus{ outline:none; border-color:var(--blue); box-shadow:0 0 0 2px rgba(0,102,255,.15); }
+
+/* 4. 24칸 그리드 (2배 크기 유지) */
 .grid{
   display:grid;
-  grid-template-columns: repeat(6, 128px);  /* 6칸 */
-  gap:6px;
-  margin:20px 0;
+  grid-template-columns:repeat(6,128px);
+  gap:8px; margin:24px 0 18px;
+  justify-content:center;
 }
 .wrap{ display:flex; flex-direction:column; align-items:center; }
 
-/* 셀 스타일 */
 .cell{
-  width:128px; height:128px; cursor:pointer;
-  background:#e0e0e0; border-radius:8px;
+  width:128px; height:128px; border-radius:10px;
+  background:#e0e0e0; cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:var(--shadow);
 }
-.cell.standby   { background:#ffd54d; } /* 대기(노랑) */
-.cell.discharge { background:#4fc3f7; } /* 방출(파랑) */
-.cell.charge    { background:#81c784; } /* 충전(초록) */
+.cell:hover{ transform:translateY(-4px); box-shadow:0 6px 18px rgba(0,0,0,.12);}
+.cell.standby   { background:var(--yellow); }
+.cell.discharge { background:var(--sky);    }
+.cell.charge    { background:var(--green);  }
 
-/* 시간대 라벨 */
 .time-label{
-  font-size:0.8rem;
-  margin-top:6px; text-align:center; line-height:1.1;
+  margin-top:6px; text-align:center; font-size:0.8rem; white-space:pre;
 }
 
-/* 범례 */
-.legend{ margin-bottom:14px; font-size:1rem; }
+/* 5. 범례 디자인 */
+.legend{ margin-bottom:20px; font-size:1rem; text-align:center; }
 .legend-box{
-  display:inline-block;
-  width:32px; height:18px; border-radius:3px; margin-right:6px;
+  display:inline-block; width:36px; height:20px; border-radius:4px;
+  margin-right:6px; vertical-align:middle; box-shadow:var(--shadow);
 }
-.legend-box.standby   { background:#ffd54d; }
-.legend-box.discharge { background:#4fc3f7; }
-.legend-box.charge    { background:#81c784; }
+.standby   { background:var(--yellow); }
+.discharge { background:var(--sky);    }
+.charge    { background:var(--green);  }
 
-/* 요약·버튼·결과 */
-#summary{ margin:18px 0; font-weight:600; }
+/* 6. 요약·버튼·결과 */
+#summary{ margin:22px 0; font-weight:600; text-align:center; }
+
 #calcBtn{
-  padding:10px; width:100%;
-  background:#0066ff; color:#fff;
-  border:none; border-radius:4px; cursor:pointer;
-  font-size:1rem;
+  display:block; width:100%; padding:14px 0; font-size:1.05rem;
+  background:var(--blue); color:#fff; border:none; border-radius:8px;
+  cursor:pointer; box-shadow:var(--shadow); transition:background .2s;
 }
+#calcBtn:hover{ background:#0052d9; }
+
 #result{
-  margin-top:22px;
-  font-size:1.1rem;
-  font-weight:bold;
-  text-align:center;
+  margin-top:28px; text-align:center;
+  font-size:1.15rem; font-weight:600;
 }
